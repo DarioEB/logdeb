@@ -1,0 +1,21 @@
+name: Test logdbar package
+
+on:
+    push:
+        branches:
+            - '*'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v6
+            - name: Setup Go
+              uses: actions/setup-go@v6
+              with:
+                go-version: 1.25.5
+            - name: Install go dependencies
+              run: go mod tidy
+            - name: Run test
+              run: go test -v ./...
