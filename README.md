@@ -1,6 +1,13 @@
 # logdbar
 
+[![Test](https://github.com/db-ar/logdbar/actions/workflows/testing.yml/badge.svg)](https://github.com/db-ar/logdbar/actions/workflows/testing.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/db-ar/logdbar.svg)](https://pkg.go.dev/github.com/db-ar/logdbar)
+
 A simple multi-level logger for Go that writes to both console and JSON files. Each log level can be independently enabled and writes to its own file.
+
+## Requirements
+
+- Go 1.21+ (uses `log/slog` from standard library)
 
 ## Installation
 
