@@ -1,3 +1,3 @@
-module github.com/db-ar/logdbar
+module github.com/DarioEB/logdeb
 
-go 1.25.5
+go 1.26.1

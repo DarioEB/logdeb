@@ -1,7 +1,7 @@
 # logdbar
 
-[![Test](https://github.com/db-ar/logdbar/actions/workflows/testing.yml/badge.svg)](https://github.com/db-ar/logdbar/actions/workflows/testing.yml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/db-ar/logdbar.svg)](https://pkg.go.dev/github.com/db-ar/logdbar)
+[![Test](https://github.com/DarioEB/logdeb/actions/workflows/testing.yml/badge.svg)](https://github.com/DarioEB/logdeb/actions/workflows/testing.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/DarioEB/logdeb.svg)](https://pkg.go.dev/github.com/DarioEB/logdeb)
 
 A simple multi-level logger for Go that writes to both console and JSON files. Each log level can be independently enabled and writes to its own file.
 
@@ -12,7 +12,7 @@ A simple multi-level logger for Go that writes to both console and JSON files. E
 ## Installation
 
 ```bash
-go get github.com/db-ar/logdbar
+go get github.com/DarioEB/logdeb
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ go get github.com/db-ar/logdbar
 ```go
 package main
 
-import "github.com/db-ar/logdbar"
+import "github.com/DarioEB/logdeb"
 
 func main() {
     logger, err := logdbar.New(logdbar.DefaultConfig())
