@@ -1,4 +1,4 @@
-package logdbar
+package logdeb
 
 import (
 	"encoding/json"

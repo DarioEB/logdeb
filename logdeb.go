@@ -1,7 +1,7 @@
-// Package logdbar provides a simple multi-level logger that writes to both
+// Package logdeb provides a simple multi-level logger that writes to both
 // console and JSON files. Each log level (Info, Error, Warn, Debug) can be
 // independently enabled and writes to its own file.
-package logdbar
+package logdeb
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 )
 
-// Config holds the configuration for creating a new Logdbar instance.
+// Config holds the configuration for creating a new Logdeb instance.
 type Config struct {
 	// Dir is the directory where log files will be created.
 	// If it doesn't exist, it will be created with 0755 permissions.
@@ -43,8 +43,8 @@ type LogInfo struct {
 	Logger *slog.Logger
 }
 
-// Logdbar is a multi-level logger that writes to console and JSON files.
-type Logdbar struct {
+// Logdeb is a multi-level logger that writes to console and JSON files.
+type Logdeb struct {
 	info    *LogInfo
 	err     *LogInfo
 	console *LogInfo
@@ -52,9 +52,9 @@ type Logdbar struct {
 	debug   *LogInfo
 }
 
-// New creates a new Logdbar instance based on the provided configuration.
+// New creates a new Logdeb instance based on the provided configuration.
 // Returns an error if the directory cannot be created or files cannot be opened.
-func New(cfg Config) (*Logdbar, error) {
+func New(cfg Config) (*Logdeb, error) {
 	if cfg.Dir == "" {
 		cfg.Dir = "logs"
 	}
@@ -63,7 +63,7 @@ func New(cfg Config) (*Logdbar, error) {
 		return nil, fmt.Errorf("error creating logs directory: %w", err)
 	}
 
-	logger := &Logdbar{
+	logger := &Logdeb{
 		console: &LogInfo{Logger: slog.New(slog.Default().Handler())},
 	}
 
@@ -104,8 +104,8 @@ func New(cfg Config) (*Logdbar, error) {
 }
 
 // Close closes all open log file handles.
-// It's recommended to defer Close() after creating a new Logdbar.
-func (l *Logdbar) Close() error {
+// It's recommended to defer Close() after creating a new Logdeb.
+func (l *Logdeb) Close() error {
 	var errs []error
 	logInfos := []*LogInfo{l.info, l.err, l.warn, l.debug}
 
@@ -125,7 +125,7 @@ func (l *Logdbar) Close() error {
 
 // RemoveLogFiles closes all file handles and removes the log files.
 // Use with caution as this permanently deletes the log files.
-func (l *Logdbar) RemoveLogFiles() error {
+func (l *Logdeb) RemoveLogFiles() error {
 	if err := l.Close(); err != nil {
 		return err
 	}
@@ -149,7 +149,7 @@ func (l *Logdbar) RemoveLogFiles() error {
 
 // Info logs a message at INFO level to console and info.log file.
 // Optional attrs can be provided as key-value pairs.
-func (l *Logdbar) Info(message string, attrs ...any) {
+func (l *Logdeb) Info(message string, attrs ...any) {
 	l.console.Logger.Info(message, attrs...)
 	if l.info != nil {
 		l.info.Logger.Info(message, attrs...)
@@ -158,7 +158,7 @@ func (l *Logdbar) Info(message string, attrs ...any) {
 
 // Error logs a message at ERROR level to console and error.log file.
 // Optional attrs can be provided as key-value pairs.
-func (l *Logdbar) Error(message string, attrs ...any) {
+func (l *Logdeb) Error(message string, attrs ...any) {
 	l.console.Logger.Error(message, attrs...)
 	if l.err != nil {
 		l.err.Logger.Error(message, attrs...)
@@ -168,7 +168,7 @@ func (l *Logdbar) Error(message string, attrs ...any) {
 // Debug logs a message at DEBUG level to console and debug.log file.
 // Optional attrs can be provided as key-value pairs.
 // Note: Console output depends on the default slog handler's minimum level.
-func (l *Logdbar) Debug(message string, attrs ...any) {
+func (l *Logdeb) Debug(message string, attrs ...any) {
 	l.console.Logger.Debug(message, attrs...)
 	if l.debug != nil {
 		l.debug.Logger.Debug(message, attrs...)
@@ -177,7 +177,7 @@ func (l *Logdbar) Debug(message string, attrs ...any) {
 
 // Warn logs a message at WARN level to console and warn.log file.
 // Optional attrs can be provided as key-value pairs.
-func (l *Logdbar) Warn(message string, attrs ...any) {
+func (l *Logdeb) Warn(message string, attrs ...any) {
 	l.console.Logger.Warn(message, attrs...)
 	if l.warn != nil {
 		l.warn.Logger.Warn(message, attrs...)

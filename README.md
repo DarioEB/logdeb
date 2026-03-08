@@ -1,4 +1,4 @@
-# logdbar
+# logdeb
 
 [![Test](https://github.com/DarioEB/logdeb/actions/workflows/testing.yml/badge.svg)](https://github.com/DarioEB/logdeb/actions/workflows/testing.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/DarioEB/logdeb.svg)](https://pkg.go.dev/github.com/DarioEB/logdeb)
@@ -25,7 +25,7 @@ package main
 import "github.com/DarioEB/logdeb"
 
 func main() {
-    logger, err := logdbar.New(logdbar.DefaultConfig())
+    logger, err := logdeb.New(logdeb.DefaultConfig())
     if err != nil {
         panic(err)
     }
@@ -41,7 +41,7 @@ func main() {
 ### Custom configuration
 
 ```go
-logger, err := logdbar.New(logdbar.Config{
+logger, err := logdeb.New(logdeb.Config{
     Dir:          "my_logs",    // Log directory (created if not exists)
     InfoEnabled:  true,         // Enable info.log
     ErrorEnabled: true,         // Enable error.log

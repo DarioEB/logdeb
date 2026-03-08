@@ -1,4 +1,4 @@
-name: Test logdbar package
+name: Test logdeb package
 
 on:
     push:
